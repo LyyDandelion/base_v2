@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.app.mapper.MemberMapper">
+
+     <!-- 通用查询映射结果 -->
+   <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.app.entity.Member">
+     <id column="member_id" property="memberId"/>
+     <result column="phone" property="phone"/>
+     <result column="uid" property="uid"/>
+     <result column="type" property="type"/>
+     <result column="password" property="password"/>
+     <result column="area" property="area"/>
+     <result column="salt" property="salt"/>
+     <result column="pay_password" property="payPassword"/>
+     <result column="pay_salt" property="paySalt"/>
+     <result column="invite_code" property="inviteCode"/>
+     <result column="parent_referee_id" property="parentRefereeId"/>
+     <result column="referee_id" property="refereeId"/>
+     <result column="mnemonic" property="mnemonic"/>
+     <result column="login_equipment" property="loginEquipment"/>
+     <result column="mall_points" property="mallPoints"/>
+     <result column="rest_day" property="restDay"/>
+     <result column="state" property="state"/>
+     <result column="nick_name" property="nickName"/>
+     <result column="real_status" property="realStatus"/>
+     <result column="area_code" property="areaCode"/>
+     <result column="failure_sign" property="failureSign"/>
+     <result column="head" property="head"/>
+     <result column="points" property="points"/>
+     <result column="real_name" property="realName"/>
+     <result column="last_login" property="lastLogin"/>
+     <result column="register_time" property="registerTime"/>
+     <result column="direct_rate" property="directRate"/>
+     <result column="team_rate" property="teamRate"/>
+     <result column="province_id" property="provinceId"/>
+     <result column="city_id" property="cityId"/>
+     <result column="area_id" property="areaId"/>
+     <result column="province_proxy" property="provinceProxy"/>
+     <result column="city_proxy" property="cityProxy"/>
+     <result column="area_id_proxy" property="areaIdProxy"/>
+     <result column="director" property="director"/>
+     <result column="cooperation" property="cooperation"/>
+     <result column="version" property="version"/>
+     <result column="status" property="status"/>
+     <result column="del" property="del"/>
+     <result column="remark" property="remark"/>
+     <result column="CREATE_TIME" property="createTime"/>
+     <result column="CREATE_USER" property="createUser"/>
+     <result column="UPDATE_TIME" property="updateTime"/>
+     <result column="UPDATE_USER" property="updateUser"/>
+     </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+         member_id as memberId,
+         phone as phone,
+         uid as uid,
+         type as type,
+         password as password,
+         area as area,
+         salt as salt,
+         pay_password as payPassword,
+         pay_salt as paySalt,
+         invite_code as inviteCode,
+         parent_referee_id as parentRefereeId,
+         referee_id as refereeId,
+         mnemonic as mnemonic,
+         login_equipment as loginEquipment,
+         mall_points as mallPoints,
+         rest_day as restDay,
+         state as state,
+         nick_name as nickName,
+         real_status as realStatus,
+         area_code as areaCode,
+         failure_sign as failureSign,
+         head as head,
+         points as points,
+         real_name as realName,
+         last_login as lastLogin,
+         register_time as registerTime,
+         direct_rate as directRate,
+         team_rate as teamRate,
+         province_id as provinceId,
+         city_id as cityId,
+         area_id as areaId,
+         province_proxy as provinceProxy,
+         city_proxy as cityProxy,
+         area_id_proxy as areaIdProxy,
+         director as director,
+         cooperation as cooperation,
+         version as version,
+         status as status,
+         del as del,
+         remark as remark,
+         CREATE_TIME as createTime,
+         CREATE_USER as createUser,
+         UPDATE_TIME as updateTime,
+        UPDATE_USER as updateUser
+    </sql>
+
+    <select id="selectByCondition" resultType="map">
+       select
+        <include refid="Base_Column_List"/>
+       from app_member tb where del='N'
+        <if test="condition!=null and condition!=''">
+          and name like concat('%',#{condition},'%')
+        </if>
+        order by tb.create_time desc
+    </select>
+
+</mapper>
