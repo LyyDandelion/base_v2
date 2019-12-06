@@ -4,7 +4,6 @@ import cn.stylefeng.guns.modular.app.service.HomeService;
 import cn.stylefeng.guns.modular.app.service.MemberService;
 import cn.stylefeng.guns.modular.app.vo.LoginVo;
 import cn.stylefeng.guns.modular.app.vo.RegVo;
-import cn.stylefeng.guns.modular.app.vo.VersionVo;
 import cn.stylefeng.guns.modular.base.util.RedisUtil;
 import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.guns.modular.system.service.LoginLogService;
@@ -15,7 +14,7 @@ import javax.validation.Valid;
 /**
  * app入口
  */
-
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api")
 public class HomeApi {
@@ -66,33 +65,6 @@ public class HomeApi {
     }
 
 
-    /***
-     * 用户协议
-     */
-    @PostMapping("/declares")
-    public Result declares()
-    {
-        return homeService.declares();
-    }
-
-    /**
-     * 测试 获取用户信息
-     */
-    @RequestMapping("/getInfo")
-    public Result getInfo(String openId){
-
-        return Result.fail(404,"空");
-    }
-
-    /**
-     * 版本信息
-     */
-    @PostMapping("/version")
-    public Result version(VersionVo versionVo){
-        return homeService.version(versionVo);
-    }
-
-
     /**
      * 退出登录
      */
@@ -102,6 +74,16 @@ public class HomeApi {
         return homeService.logout(token);
     }
 
+    /**
+     * 获取验证码
+     * @param phone
+     * @param type
+     * @return
+     */
+    @PostMapping("/getMsg")
+    public Result msg(@RequestHeader(value = "token",required = false,defaultValue = "-1") String token,@RequestParam(defaultValue = "1")String phone, @RequestParam(value = "type", required = false, defaultValue = "1") Long type){
+        return homeService.getMsg(token,phone,type);
+    }
 
 
 }

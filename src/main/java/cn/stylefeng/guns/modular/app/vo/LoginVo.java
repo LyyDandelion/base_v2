@@ -15,8 +15,8 @@ public class LoginVo {
      * 用户名
      */
     @NotBlank(message = "账号不能为空")
-    @Pattern(regexp = "[a-zA-Z0-9]{2,11}",message = "账号格式有误")
-    private String account;
+    @Pattern(regexp = "[0-9]{2,11}",message = "账号格式有误")
+    private String phone;
 
     /**
      * 密码

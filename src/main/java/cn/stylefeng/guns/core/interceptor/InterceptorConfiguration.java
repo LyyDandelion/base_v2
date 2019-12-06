@@ -26,7 +26,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
         ir.excludePathPatterns("/api/version");//版本
         ir.excludePathPatterns("/api/upload/img");//图片上传
         ir.excludePathPatterns("/api/personal/**");//处理外部回调api
-        ir.excludePathPatterns("/app/common/**");//公共api
+        ir.excludePathPatterns("/api/common/**");//公共api
         ir.excludePathPatterns("/api/visitor/**");//游客访问api
 
     }

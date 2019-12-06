@@ -1,6 +1,8 @@
 package cn.stylefeng.guns.modular.bulletin.service;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.guns.modular.base.state.Constant;
+import cn.stylefeng.guns.modular.base.state.PromotionFactory;
 import cn.stylefeng.guns.modular.base.util.HttpUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -20,8 +22,8 @@ import java.net.URLEncoder;
 public class SendSMSExtService{
 
 	// 华信短信:  smsAccount smsPassword
-	private static final String smsAccount = "";
-	private static final String smsPassword = "";
+	private static final String smsAccount = PromotionFactory.me().getSysConfigValueByCode(Constant.SMS_ACCOUNT);
+	private static final String smsPassword = PromotionFactory.me().getSysConfigValueByCode(Constant.SMS_PASSWORD);
 
 	
 	private static final String smsAccountI18 = "";

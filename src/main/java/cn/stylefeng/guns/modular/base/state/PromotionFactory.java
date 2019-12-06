@@ -1,5 +1,7 @@
 package cn.stylefeng.guns.modular.base.state;
 
+import cn.stylefeng.guns.modular.app.entity.Member;
+import cn.stylefeng.guns.modular.app.mapper.MemberMapper;
 import cn.stylefeng.guns.modular.base.util.Result;
 import cn.stylefeng.guns.modular.bulletin.entity.*;
 import cn.stylefeng.guns.modular.bulletin.mapper.*;
@@ -34,7 +36,7 @@ public class PromotionFactory implements IPromotionFactory {
 
 
 
-//    private AppMemberMapper appMemberMapper = SpringContextHolder.getBean(AppMemberMapper.class);
+    private MemberMapper appMemberMapper = SpringContextHolder.getBean(MemberMapper.class);
 
 
 
@@ -94,31 +96,35 @@ public class PromotionFactory implements IPromotionFactory {
     }
 
 
-    /**
-     * 根据id获取用户信息
-     *
-     * @param memberId
-     * @return
-     */
-//    public AppMember getMemberById(Long memberId) {
-//        return appMemberMapper.selectById(memberId);
-//    }
 
     /**
+     * 获取用户信息
+     *
+     * @param memberId  用户id
+     * @param inviteCode 邀请码
+     * @return
+     */
+    public Member getMember(Long memberId,String inviteCode) {
+        Member member=new Member();
+        member.setMemberId(memberId).setInviteCode(inviteCode);
+        return appMemberMapper.selectOne(new QueryWrapper<>(member));
+    }
+
+
+
+     /**
      * 根据id获取用户信息
      *
      * @param memberId
      * @return
      */
-//    public String getMemberNameById(Long memberId) {
-//
-//        AppMember appMember = appMemberMapper.selectById(memberId);
-//        if (appMember == null) {
-//            return "";
-//        }
-//        return appMember.getName();
-//
-//    }
+    public Member getMember(Long memberId) {
+        return getMember(memberId,null);
+    }
+
+
+
+
 
     /**
      *  是否开放日志
